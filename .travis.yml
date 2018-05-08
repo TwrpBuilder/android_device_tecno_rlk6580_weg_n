@@ -20,7 +20,7 @@ script:
     EOF
 after_success:
   - export version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d '"' -f2)
-  - cp $HOME/twrp/out/target/product/rlk6580_weg_n/twrp-hovatek_recovery.img $HOME/twrp/TWRP-$version-rlk6580_weg_n-$(date +"%Y%m%d").img
+  - cp $HOME/twrp/out/target/product/rlk6580_weg_n/recovery.img $HOME/twrp/TWRP-$version-rlk6580_weg_n-$(date +"%Y%m%d").img
 
 deploy:
   skip_cleanup: true
@@ -32,3 +32,7 @@ deploy:
     tags: false
     repo: TwrpBuilder/android_device_tecno_rlk6580_weg_n
     branch: master
+
+branches:
+  except:
+    - /^(?i:untagged)-.*$/
